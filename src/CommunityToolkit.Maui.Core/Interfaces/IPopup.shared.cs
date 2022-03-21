@@ -1,4 +1,6 @@
-﻿using IElement = Microsoft.Maui.IElement;
+﻿// If you comment this alias you will see the error
+
+using IElement = Microsoft.Maui.IElement;
 using LayoutAlignment = Microsoft.Maui.Primitives.LayoutAlignment;
 
 namespace CommunityToolkit.Maui.Core;
