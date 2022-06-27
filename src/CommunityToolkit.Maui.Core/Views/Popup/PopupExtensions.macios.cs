@@ -75,10 +75,13 @@ public static class PopupExtensions
 			return;
 		}
 
+		var content = mauiPopup.PreferredContentSize;
+
 		CGRect frame = default;
-		if (mauiPopup.ViewController?.View?.Window is UIWindow window)
+
+		if (mauiPopup.ViewController?.View?.Frame is CGRect viewFrame)
 		{
-			frame = window.Frame;
+			frame = viewFrame;
 		}
 		else
 		{
@@ -90,14 +93,14 @@ public static class PopupExtensions
 			var originY = popup.VerticalOptions switch
 			{
 				Microsoft.Maui.Primitives.LayoutAlignment.End => UIScreen.MainScreen.Bounds.Height,
-				Microsoft.Maui.Primitives.LayoutAlignment.Center => frame.GetMidY(),
+				Microsoft.Maui.Primitives.LayoutAlignment.Center => (frame.GetMidY()),
 				_ => 0f
 			};
 
 			var originX = popup.HorizontalOptions switch
 			{
 				Microsoft.Maui.Primitives.LayoutAlignment.End => UIScreen.MainScreen.Bounds.Width,
-				Microsoft.Maui.Primitives.LayoutAlignment.Center => frame.GetMidX(),
+				Microsoft.Maui.Primitives.LayoutAlignment.Center => (frame.GetMidX()),
 				_ => 0f
 			};
 
