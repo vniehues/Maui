@@ -1,109 +1,103 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
-    <UseMauiCore>true</UseMauiCore>
-    <UseMauiEssentials>true</UseMauiEssentials>
-    <SingleProject>true</SingleProject>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+        <UseMauiCore>true</UseMauiCore>
+        <UseMauiEssentials>true</UseMauiEssentials>
+        <SingleProject>true</SingleProject>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <XamarinGoogleGuavaListenableFutureOptOut>true</XamarinGoogleGuavaListenableFutureOptOut>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    </PropertyGroup>
 
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <GitInfoReportImportance>high</GitInfoReportImportance>
+        <PackageId>CommunityToolkit.Maui.Core</PackageId>
+        <Summary>Core library for community toolkits using .NET MAUI</Summary>
+        <Authors>Microsoft</Authors>
+        <Owners>Microsoft</Owners>
+        <NeutralLanguage>en</NeutralLanguage>
+        <Product>CommunityToolkit.Maui (net6.0)</Product>
+        <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/CommunityToolkit/Maui</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/CommunityToolkit/Maui</RepositoryUrl>
+        <PackageReleaseNotes>TBD</PackageReleaseNotes>
+        <DefineConstants>$(DefineConstants);</DefineConstants>
+        <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+        <Title>CommunityToolkit.Maui.Core</Title>
+        <Description>Core library for community toolkits using .NET MAUI</Description>
+        <PackageIcon>icon.png</PackageIcon>
+        <Product>$(AssemblyName) ($(TargetFramework))</Product>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+        <Version>1.0.0-pre1</Version>
+        <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageTags>dotnet,maui,toolkit,kit,communitytoolkit,dotnetcommunitytoolkit</PackageTags>
+        <Configurations>Debug;Release</Configurations>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <GitInfoReportImportance>high</GitInfoReportImportance>
-    <PackageId>CommunityToolkit.Maui.Core</PackageId>
-    <Summary>Core library for community toolkits using .NET MAUI</Summary>
-    <Authors>Microsoft</Authors>
-    <Owners>Microsoft</Owners>
-    <NeutralLanguage>en</NeutralLanguage>
-    <Product>CommunityToolkit.Maui (net6.0)</Product>
-    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/CommunityToolkit/Maui</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/CommunityToolkit/Maui</RepositoryUrl>
-    <PackageReleaseNotes>TBD</PackageReleaseNotes>
-    <DefineConstants>$(DefineConstants);</DefineConstants>
-    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
-    <Title>CommunityToolkit.Maui.Core</Title>
-    <Description>Core library for community toolkits using .NET MAUI</Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>1.0.0-pre1</Version>
-    <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>dotnet,maui,toolkit,kit,communitytoolkit,dotnetcommunitytoolkit</PackageTags>
-    <Configurations>Debug;Release</Configurations>
-  </PropertyGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true ">
+        <Compile Remove="**\**\*.ios.cs"/>
+        <None Include="**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+        <Compile Remove="**\ios\**\*.cs"/>
+        <None Include="**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true ">
+        <Compile Remove="**\*.macos.cs"/>
+        <None Include="**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+        <Compile Remove="**\macos\**\*.cs"/>
+        <None Include="**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true">
+        <Compile Remove="**\*.macios.cs"/>
+        <None Include="**\*.macios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+        <Compile Remove="**\macios\**\*.cs"/>
+        <None Include="**\macios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid')) != true AND $(TargetFramework.StartsWith('net6.0-android')) != true ">
+        <Compile Remove="**\**\*.android.cs"/>
+        <None Include="**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+        <Compile Remove="**\android\**\*.cs"/>
+        <None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
+        <Compile Remove="**\*.windows.cs"/>
+        <None Include="**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+        <Compile Remove="**\windows\**\*.cs"/>
+        <None Include="**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)"/>
+    </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true ">
-    <Compile Remove="**\**\*.ios.cs" />
-    <None Include="**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\ios\**\*.cs" />
-    <None Include="**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true ">
-    <Compile Remove="**\*.macos.cs" />
-    <None Include="**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\macos\**\*.cs" />
-    <None Include="**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true">
-    <Compile Remove="**\*.macios.cs" />
-    <None Include="**\*.macios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\macios\**\*.cs" />
-    <None Include="**\macios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid')) != true AND $(TargetFramework.StartsWith('net6.0-android')) != true ">
-    <Compile Remove="**\**\*.android.cs" />
-    <None Include="**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\android\**\*.cs" />
-    <None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
-    <Compile Remove="**\*.windows.cs" />
-    <None Include="**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\windows\**\*.cs" />
-    <None Include="**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+        <!--        <PackageReference Include="Xamarin.Google.Guava" Version="31.1.0.3" />-->
+        <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.1.0"/>
+        <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.1.0"/>
+        <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.1.0-beta02"/>
+        <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" Version="1.0.0.9"/>
+    </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
-    <!--<PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.0.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.0.2.3" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.0.0.5-alpha20" />
-    <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" Version="1.0.0.6" />
-    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.7.0" />-->
+    <ItemGroup>
+        <None Include="..\..\build\nuget.png" PackagePath="icon.png" Pack="true"/>
+        <None Include="ReadMe.txt" pack="true" PackagePath="."/>
+    </ItemGroup>
 
-    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.7.0.2" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.0.2.4" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.0.2.4" />
-    <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.0.0.5-alpha20" />
-    <PackageReference Include="Xamarin.Google.Guava.ListenableFuture" Version="1.0.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\build\nuget.png" PackagePath="icon.png" Pack="true" />
-    <None Include="ReadMe.txt" pack="true" PackagePath="." />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Maui.Dependencies" Version="$(MauiVersion)">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Maui.Extensions" Version="$(MauiVersion)">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Maui.Dependencies" Version="$(MauiVersion)">
+            <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Maui.Extensions" Version="$(MauiVersion)">
+            <PrivateAssets>All</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
 
 </Project>
