@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:Popup
+	x:Class="Bla.Views.Popups.LoadingPopup"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	CanBeDismissedByTappingOutsideOfPopup="False">
+	<VerticalStackLayout x:Name="verticalStackLayout">
+		<Button
+			x:Name="label"
+			Clicked="label_Clicked"
+			HorizontalOptions="Center"
+			Text="Welcome to .NET MAUI!"
+			VerticalOptions="Center" />
+
+		<HorizontalStackLayout Spacing="5">
+			<Label Text="CanBeDismissedByTappingOutsideOfPopup" />
+			<CheckBox x:Name="chkDismiss" CheckedChanged="chkDismiss_CheckedChanged" />
+		</HorizontalStackLayout>
+
+	</VerticalStackLayout>
+</views:Popup>

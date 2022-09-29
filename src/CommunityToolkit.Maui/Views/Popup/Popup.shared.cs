@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core;
+using Microsoft.Maui.Controls.Internals;
 using LayoutAlignment = Microsoft.Maui.Primitives.LayoutAlignment;
 
 namespace CommunityToolkit.Maui.Views;
@@ -7,8 +8,15 @@ namespace CommunityToolkit.Maui.Views;
 /// Represents a small View that pops up at front the Page. Implements <see cref="IPopup"/>.
 /// </summary>
 [ContentProperty(nameof(Content))]
-public partial class Popup : Element, IPopup
+public partial class Popup : Element, IPopup, IWindowController, IPropertyPropagationController, IVisualTreeElement
 {
+
+	IReadOnlyList<IVisualTreeElement> IVisualTreeElement.GetVisualChildren()
+	{
+		return new List<IVisualTreeElement> { Content! };
+	}
+
+
 	/// <summary>
 	///  Backing BindableProperty for the <see cref="Content"/> property.
 	/// </summary>
@@ -91,7 +99,16 @@ public partial class Popup : Element, IPopup
 	public virtual View? Content
 	{
 		get => (View?)GetValue(ContentProperty);
-		set => SetValue(ContentProperty, value);
+		set
+		{
+			SetValue(ContentProperty, value);
+			if (Content is null)
+			{
+				return;
+			}
+
+			Content.Parent = this;
+		}
 	}
 
 	/// <summary>
@@ -174,6 +191,34 @@ public partial class Popup : Element, IPopup
 	/// <inheritdoc/>
 	IView? IPopup.Content => Content;
 
+	//static readonly BindablePropertyKey WindowPropertyKey = BindableProperty.CreateReadOnly(
+	//			nameof(Window), typeof(Window), typeof(BaseShellItem), null);
+
+	//public static readonly BindableProperty WindowProperty = WindowPropertyKey.BindableProperty;
+
+	//public Window Window => (Window)GetValue(WindowProperty);
+
+	//Window IWindowController.Window
+	//{
+	//	get => (Window)GetValue(WindowProperty);
+	//	set => SetValue(WindowPropertyKey, value);
+	//}
+
+	Window window = null!;
+	public Window Window
+	{
+		get => window;
+		set
+		{
+			if (window == value)
+			{
+				return;
+			}
+			window = value;
+			(this as IPropertyPropagationController).PropagatePropertyChanged(null);
+		}
+	}
+
 	/// <summary>
 	/// Resets the Popup.
 	/// </summary>
@@ -250,4 +295,9 @@ public partial class Popup : Element, IPopup
 	void IPopup.OnOpened() => OnOpened();
 
 	void IPopup.OnDismissedByTappingOutsideOfPopup() => OnDismissedByTappingOutsideOfPopup();
+
+	void IPropertyPropagationController.PropagatePropertyChanged(string propertyName)
+	{
+		PropertyPropagationExtensions.PropagatePropertyChanged(propertyName, this.Parent, ((IVisualTreeElement)this).GetVisualChildren());
+	}
 }
