@@ -207,17 +207,9 @@ public partial class Popup : Element, IPopup, IWindowController, IPropertyPropag
 	Window window = null!;
 	public Window Window
 	{
-		get => window;
-		set
-		{
-			if (window == value)
-			{
-				return;
-			}
-			window = value;
-			(this as IPropertyPropagationController).PropagatePropertyChanged(null);
-		}
-	}
+		get;
+		set;
+	} = null!;
 
 	/// <summary>
 	/// Resets the Popup.
@@ -298,6 +290,6 @@ public partial class Popup : Element, IPopup, IWindowController, IPropertyPropag
 
 	void IPropertyPropagationController.PropagatePropertyChanged(string propertyName)
 	{
-		PropertyPropagationExtensions.PropagatePropertyChanged(propertyName, this.Parent, ((IVisualTreeElement)this).GetVisualChildren());
+		PropertyPropagationExtensions.PropagatePropertyChanged(propertyName, this, ((IVisualTreeElement)this).GetVisualChildren());
 	}
 }

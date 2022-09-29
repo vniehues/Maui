@@ -15,7 +15,7 @@ public static partial class PopupExtensions
 		
 		var page = ((Page)window.Content).GetCurrentPage();
 		page.InternalChildren.Add(popup);
-		popup.Parent = page;
+		//popup.Parent = page;
 		//if (popup.Content is not null)
 		//{
 		//	popup.Content.Parent = popup;
