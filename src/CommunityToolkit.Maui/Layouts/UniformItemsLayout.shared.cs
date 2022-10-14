@@ -98,7 +98,7 @@ public class UniformItemsLayout : Layout, IUniformItemsLayout
 	{
 		var visibleChildren = Children.Where(x => x.Visibility == Visibility.Visible).ToArray();
 
-		if (childWidth == 0)
+		if (childWidth == 0 && vivibleChildren.Lenght > 0)
 		{
 			var sizeRequest = visibleChildren[0].Measure(double.PositiveInfinity, double.PositiveInfinity);
 
